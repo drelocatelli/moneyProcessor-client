@@ -26,6 +26,21 @@ class Auth {
             return {success: false, ...errors};
         }
     }
+
+    static async details(token: string) : Promise<DefaultData> {
+        try {
+            const response = await axios.get(env.API_HOST.concat('/auth/details'), {
+                headers: {
+                    Authorization: 'Bearer ' + token
+                }
+            });
+
+            return {success: true, data: response.data};
+        } catch(err: any) {
+            const errors = Error.get(err);
+            return {success: false, ...errors};
+        }
+    }
     
 }
 
