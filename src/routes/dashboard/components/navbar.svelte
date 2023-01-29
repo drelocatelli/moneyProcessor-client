@@ -1,9 +1,14 @@
 <script lang="ts">
-    import type { PageData } from "../../$types";
+  import ResumeRepository from "../../../Repository/ResumeRepository";
+    import resumeStore from "../../../Store/ResumeStore";
 
-    export let data: PageData;
+  const props = $$props;
+  const {token, user} = props.data;
 
-    console.log(data)
+  async function handleSubmit(e: SubmitEvent) {
+    const resumeResponse = await ResumeRepository.get(new FormData(e.target  as HTMLFormElement), token)
+    resumeStore.set(resumeResponse.data);
+  }
 </script>
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -29,18 +34,18 @@
             </ul>
         </li>
         </ul>
-        <form class="d-flex date-form" role="search">
+        <form on:submit|preventDefault={handleSubmit} action="post" class="d-flex date-form menu__flexible" role="search">
             <label for="start_date">Data inicial:</label>
-            <input type="date" name="name" id="start_date" class="form-control">
+            <input type="date" name="start_date" id="start_date" class="form-control">
 
             <label for="end_date">Data final:</label>
-            <input type="date" name="name" id="end_date" class="form-control">
+            <input type="date" name="end_date" id="end_date" class="form-control">
 
             <button type="submit" class="btn btn-secondary ms-2">Consultar</button>
         </form>
-        <ul class="navbar-nav ms-5 mb-lg-0">
+        <ul class="navbar-nav ms-5 mb-lg-0 menu__flexible">
             <li class="nav-item">
-                <!-- {data.user?.data.name}, -->
+              {user.data.name}
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link">Sair</a>
@@ -57,7 +62,7 @@
         margin-right: 5px;
     }
 
-    form.date-form {
+    .menu__flexible {
         display: flex;
         flex-direction: row;
         align-items: center;

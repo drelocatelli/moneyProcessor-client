@@ -7,7 +7,7 @@ class Auth {
 
     static async login(data: object) : Promise<DefaultData> {
         try {
-            const response = await axios.post(env.API_HOST.concat('/auth/login'), data);
+            const response = await axios.post(env.VITE_API_HOST.concat('/auth/login'), data);
         
             return {success: true, data: response.data};
         } catch(err: any) {
@@ -18,7 +18,7 @@ class Auth {
 
     static async register(data: object) : Promise<DefaultData> {
         try {
-            const response = await axios.post(env.API_HOST.concat('/auth/register'), data);
+            const response = await axios.post(env.VITE_API_HOST.concat('/auth/register'), data);
 
             return {success: true, data: response.data};            
         } catch(err: any) {
@@ -29,7 +29,7 @@ class Auth {
 
     static async details(token: string) : Promise<DefaultData> {
         try {
-            const response = await axios.get(env.API_HOST.concat('/auth/details'), {
+            const response = await axios.get(env.VITE_API_HOST.concat('/auth/details'), {
                 headers: {
                     Authorization: 'Bearer ' + token
                 }

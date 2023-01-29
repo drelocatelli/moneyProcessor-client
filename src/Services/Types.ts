@@ -5,4 +5,30 @@ interface DefaultData {
     data?: any
 }
 
-export type {DefaultData};
+interface IResumeData {
+    start_date: string;
+    end_date: string;
+}
+
+class CResumeStatus {
+    static positive = 'positive';
+    static negative = 'negative';
+}
+
+interface IResumeRE {
+    total: number;
+    quantity: number;
+    average: number;
+}
+
+interface IResumeResponse extends DefaultData {
+    data?: {
+        salary: number;
+        balance: number;
+        status: CResumeStatus;
+        revenues: IResumeRE;
+        expenses: IResumeRE;
+    }
+}
+
+export type {DefaultData, IResumeData, IResumeResponse};

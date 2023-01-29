@@ -4,10 +4,12 @@ import type { RequestEvent } from "./$types";
 
 export const load = (async (event : RequestEvent) => {
     Authentication.protect(event);
+
+    const token = event.cookies.get('mp_session');
     
-    if(typeof event.cookies.get('mp_session') != 'undefined') {
+    if(typeof token != 'undefined') {
         const user = await AuthService.details(event.cookies.get('mp_session')!);
         
-        return {user};
+        return {user, token};
     }
 });
