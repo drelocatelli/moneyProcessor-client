@@ -6,6 +6,7 @@
     import Navbar from './components/navbar.svelte';
     import { page } from "$app/stores";
     import SearchParams from '../../Class/SearchParams';
+    //@ts-ignore
     import Icon from 'svelte-icons-pack/Icon.svelte';
     //@ts-ignore
     import FaSolidChartLine from 'svelte-icons-pack/fa/FaSolidChartLine';
@@ -39,7 +40,7 @@
 
     function getDaysDiff() {
         const payload = resume!.data!.payload!;
-        return parseInt(payload.start_date.split('-')[2]) - parseInt(payload.end_date.split('-')[2]);
+        return Math.abs(parseInt(payload.start_date.split('-')[2]) - parseInt(payload.end_date.split('-')[2]));
     }
     
 </script>
