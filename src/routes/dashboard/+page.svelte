@@ -17,9 +17,11 @@
 
     (async function() {
         const tomorrow = new Date(date);
+        const initDate = new Date(date);
+        initDate.setDate(1);
         tomorrow.setDate(tomorrow.getDate() + 1);
         const formData = new FormData();
-        formData.append('start_date', SearchParams.get($page, 'start_date') ?? date.toISOString().substring(0, 10));
+        formData.append('start_date', SearchParams.get($page, 'start_date') ?? initDate.toISOString().substring(0, 10));
         formData.append('end_date', SearchParams.get($page, 'end_date') ?? tomorrow.toISOString().substring(0, 10));
         if(data.token) {
             resumeStore.set(await ResumeRepository.get(formData, data.token));
@@ -27,11 +29,15 @@
     })();
 
 
-    function formatDate(payload: string): string[] {
+    function formatDate(payload: string): string {
         const [year, month, day] = payload.split("-");
         const currentDate = `${day}/${month}/${year}`;
-        const timeCount = moment(currentDate).diff(moment(date), 'days').toString();
-        return [moment(currentDate).format('L'), timeCount];
+        return currentDate;
+    }
+
+    function getDaysDiff() {
+        const payload = resume!.data!.payload!;
+        return parseInt(payload.start_date.split('-')[2]) - parseInt(payload.end_date.split('-')[2]);
     }
     
 </script>
@@ -42,7 +48,7 @@
         <div class="container" style="height:100vh; display:flex; flex-direction:column; justify-content: center;">
             {#if resume}
                 {#if (resume.success && resume.data)}
-                    <h1>Resumo de {formatDate(resume.data.payload.start_date)[0]} até {formatDate(resume.data.payload.end_date)[0]}, ({formatDate(resume.data.payload.end_date)[1]} dia/s)</h1>
+                    <h1>Resumo de {formatDate(resume.data.payload.start_date)} até {formatDate(resume.data.payload.end_date)}, ({getDaysDiff()} dia/s)</h1>
                     <br>
                     <table class="table table-striped table-bordered resume-table">
                         <tr>
