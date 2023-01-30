@@ -20,7 +20,7 @@ interface IResumeResponse extends DefaultData {
     data?: {
         salary: number;
         balance: number;
-        status: 'positive'| 'negative';
+        status: 'positivo'| 'negativo';
         revenues: IResumeRE;
         expenses: IResumeRE;
         payload: {

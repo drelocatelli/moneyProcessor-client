@@ -1,5 +1,3 @@
-import { goto } from '$app/navigation';
-import { redirect } from '@sveltejs/kit';
 import Authentication from '../Class/Authentication';
 import Auth from '../Services/Auth';
 import type { Actions } from './$types';

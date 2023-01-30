@@ -53,7 +53,7 @@
               {user.data.name}
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">Sair</a>
+                <a href="/dashboard/logout" class="nav-link">Sair</a>
             </li>
         </ul>
       </div>

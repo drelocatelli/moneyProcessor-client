@@ -4,7 +4,6 @@
     import resumeStore from '../../Store/ResumeStore';
     import type { PageData } from './$types';
     import Navbar from './components/navbar.svelte';
-    import moment from 'moment';
     import { page } from "$app/stores";
     import SearchParams from '../../Class/SearchParams';
 
@@ -50,8 +49,9 @@
                 {#if (resume.success && resume.data)}
                     <h1>Resumo de {formatDate(resume.data.payload.start_date)} até {formatDate(resume.data.payload.end_date)}, ({getDaysDiff()} dia/s)</h1>
                     <br>
-                    <table class="table table-striped table-bordered resume-table">
+                    <table class="table table-hover table-striped table-bordered resume-table">
                         <tr>
+                            <th>#</th>
                             <th>Salário</th>
                             <th>Receita</th>
                             <th>Despesa</th>
@@ -59,25 +59,25 @@
                             <th>Status</th>
                         </tr>
                         <tr>
-                            <td>{resume.data.salary}</td>
-                            <td>
+                            <td></td>
+                            <td>$ {resume.data.salary}</td>
+                            <td class="min-table">
                                 <div class="resume">
-
                                     <li>
                                         <b>Quantidade</b>
                                         {resume.data.revenues.quantity}
                                     </li>
                                     <li>
                                         <b>Média</b>
-                                        {resume.data.revenues.average}
+                                        $ {resume.data.revenues.average}
                                     </li>
                                     <li>
                                         <b>Total</b>
-                                        {resume.data.revenues.total}
+                                        $ {resume.data.revenues.total}
                                     </li>
                                 </div>
                             </td>
-                            <td>
+                            <td class="min-table">
                                 <div class="resume">
                                     <li>
                                         <b>Quantidade</b>
@@ -85,19 +85,23 @@
                                     </li>
                                     <li>
                                         <b>Média</b>
-                                        {resume.data.expenses.average}
+                                        $ {resume.data.expenses.average}
                                     </li>
                                     <li>
                                         <b>Total</b>
-                                        {resume.data.expenses.total}
+                                        $ {resume.data.expenses.total}
                                     </li>
                                 </div>
                             </td>
                             <td>
-                                {resume.data.balance}
+                                $ {resume.data.balance}
                             </td>
                             <td>
-                                {resume.data.status}
+                                {#if (resume.data.status == 'positivo')}
+                                    <span class="badge bg-success">{resume.data.status}</span>
+                                {:else}
+                                    <span class="badge bg-danger">{resume.data.status}</span>
+                                {/if}
                             </td>
                         </tr>
                     </table>
@@ -115,16 +119,38 @@
 </section>
 
 <style>
+    .resume-table td, .resume-table th{
+        border: 1px solid #dee2e6a6!important;
+        padding: 5px 1rem;
+    }
+
+    .resume-table tr:hover > td {
+        background-color: #f9f9f9;
+    }
+
     .resume-table li {
         padding:0;
+        padding-right: 2rem;
         list-style: none;
         display: inline-flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
+    }
+
+    .resume-table .resume li:nth-child(2) {
+        padding-left: 2rem;
+        border-right: 1px solid #dee2e6a6!important;
+        border-left: 1px solid #dee2e6a6!important;
     }
 
     .resume-table .resume {
+        padding: 0;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
+        gap: 22px;
+    }
+
+    td.min-table {
+        max-width: 240px;
     }
 </style>
