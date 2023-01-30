@@ -19,7 +19,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/dashboard">Home</a>
+            <a class="nav-link active" aria-current="page" href="/dashboard">Resumo</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -35,10 +35,10 @@
         </ul>
         <form on:submit|preventDefault={handleSubmit} action="post" class="d-flex date-form menu__flexible" role="search">
             <label for="start_date">Data inicial:</label>
-            <input type="date" name="start_date" id="start_date" class="form-control">
+            <input type="date" name="start_date" id="start_date" class="form-control" required>
 
             <label for="end_date">Data final:</label>
-            <input type="date" name="end_date" id="end_date" class="form-control">
+            <input type="date" name="end_date" id="end_date" class="form-control" required>
 
             <button type="submit" class="btn btn-secondary ms-2">Consultar</button>
         </form>
