@@ -28,6 +28,10 @@ interface IResumeResponse extends DefaultData {
         status: CResumeStatus;
         revenues: IResumeRE;
         expenses: IResumeRE;
+        payload: {
+            start_date: string;
+            end_date: string;
+        }
     }
 }
 

@@ -6,8 +6,7 @@
   const {token, user} = props.data;
 
   async function handleSubmit(e: SubmitEvent) {
-    const resumeResponse = await ResumeRepository.get(new FormData(e.target  as HTMLFormElement), token)
-    resumeStore.set(resumeResponse.data);
+    resumeStore.set(await ResumeRepository.get(new FormData(e.target  as HTMLFormElement), token));
   }
 </script>
 
