@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { goto } from "$app/navigation";
+    import { page } from "$app/stores";
   import ResumeRepository from "../../../Repository/ResumeRepository";
     import resumeStore from "../../../Store/ResumeStore";
 
@@ -6,7 +8,11 @@
   const {token, user} = props.data;
 
   async function handleSubmit(e: SubmitEvent) {
-    resumeStore.set(await ResumeRepository.get(new FormData(e.target  as HTMLFormElement), token));
+    const formData = new FormData(e.target  as HTMLFormElement);
+    resumeStore.set(await ResumeRepository.get(formData, token));
+    $page.url.searchParams.set('start_date', formData.get('start_date') as string);
+    $page.url.searchParams.set('end_date', formData.get('end_date') as string);
+    goto(`?${$page.url.searchParams.toString()}`);
   }
 </script>
 

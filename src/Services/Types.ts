@@ -10,11 +10,6 @@ interface IResumeData {
     end_date: string;
 }
 
-class CResumeStatus {
-    static positive = 'positive';
-    static negative = 'negative';
-}
-
 interface IResumeRE {
     total: number;
     quantity: number;
@@ -25,7 +20,7 @@ interface IResumeResponse extends DefaultData {
     data?: {
         salary: number;
         balance: number;
-        status: CResumeStatus;
+        status: 'positive'| 'negative';
         revenues: IResumeRE;
         expenses: IResumeRE;
         payload: {
