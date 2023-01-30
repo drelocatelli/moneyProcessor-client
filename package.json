@@ -24,6 +24,8 @@
 	"dependencies": {
 		"@emotion/css": "^11.10.5",
 		"axios": "^1.2.4",
-		"moment": "^2.29.4"
+		"bootstrap-icons": "^1.10.3",
+		"moment": "^2.29.4",
+		"svelte-icons-pack": "^2.0.0"
 	}
 }

@@ -6,6 +6,9 @@
     import Navbar from './components/navbar.svelte';
     import { page } from "$app/stores";
     import SearchParams from '../../Class/SearchParams';
+    import Icon from 'svelte-icons-pack/Icon.svelte';
+    //@ts-ignore
+    import FaSolidChartLine from 'svelte-icons-pack/fa/FaSolidChartLine';
 
     export let data: PageData;
 
@@ -98,9 +101,21 @@
                             </td>
                             <td>
                                 {#if (resume.data.status == 'positivo')}
-                                    <span class="badge bg-success">{resume.data.status}</span>
+                                    <span class="badge bg-success">
+                                        <Icon src={FaSolidChartLine} color="#fff"/>
+                                        &nbsp;
+                                        <i class="fa-regular fa-chart-line-up"></i>
+                                        {resume.data.status}
+                                    </span>
                                 {:else}
-                                    <span class="badge bg-danger">{resume.data.status}</span>
+                                    <span class="badge bg-danger">
+                                        <span style="rotate: 180deg; display: inline-block;">
+                                            <Icon src={FaSolidChartLine} color="#fff" />
+                                        </span>
+                                        &nbsp;
+                                        <i class="fa-regular fa-chart-line-up"></i>
+                                        {resume.data.status}
+                                    </span>
                                 {/if}
                             </td>
                         </tr>
@@ -151,6 +166,6 @@
     }
 
     td.min-table {
-        max-width: 240px;
+        /* max-width: 240px; */
     }
 </style>
