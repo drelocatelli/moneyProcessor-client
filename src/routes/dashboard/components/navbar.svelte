@@ -27,7 +27,8 @@
           <li class="nav-item">
             <a class="nav-link" aria-current="page" href="/dashboard">Resumo</a>
           </li>
-          <li class="nav-item"><a href="#" class="nav-link">Verificar gráficos</a></li>
+          <li class="nav-item"><a href="/dashboard/despesas" class="nav-link">Despesas</a></li>
+          <li class="nav-item"><a href="/dashboard/receitas" class="nav-link">Receitas</a></li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Inserir

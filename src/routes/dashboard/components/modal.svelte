@@ -23,7 +23,7 @@
 
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
-    <form action="post">
+    <form method="post" action="?/createDespesa">
         <div class="modal-body">
             <div class="mb-3">
                 <label for="title">Título</label>
@@ -31,12 +31,12 @@
             </div>
             <div class="mb-3">
                 <label for="total">Valor (R$)</label>
-                <input type="number" class="form-control" id="total" name="total">
+                <input type="number" value="0" class="form-control" id="total" name="total" required>
             </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-primary">Salvar</button>
+            <button type="submit" class="btn btn-primary">Salvar alterações</button>
         </div>
     </form>
     </div>

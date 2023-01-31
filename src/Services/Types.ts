@@ -30,4 +30,27 @@ interface IResumeResponse extends DefaultData {
     }
 }
 
-export type {DefaultData, IResumeData, IResumeResponse};
+interface IItemsResponse extends DefaultData {
+    data?: {
+        current_page: number,
+        data: IBasicData,
+        first_page_url?: string,
+        from: number,
+        next_page_url?: string,
+        path: string,
+        per_page: number,
+        prev_page_url?: string,
+        to: number
+    }
+}
+
+interface IBasicData {
+    id: string;
+    user_id: number,
+    title: string,
+    total: number,
+    updated_at: string,
+    created_at: string
+}
+
+export type {DefaultData, IResumeData, IResumeResponse, IItemsResponse, IBasicData};
