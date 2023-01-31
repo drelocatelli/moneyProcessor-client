@@ -1,38 +1,44 @@
 <script lang="ts">
-    import { onMount } from "svelte";
-    
-    onMount(() => {
-        mountModalDespesa();
-    })
+    import { page } from "$app/stores";
+    import SearchParams from "../../../Class/SearchParams";
 
-    function mountModalDespesa() {
-        const modal = document.querySelector('#modal__despesa');
+    const id = SearchParams.get($page, 'despesa');
+
+    console.log(id)
     
-        console.log(modal)
-    }
 
 </script>
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal__despesa">
-    Launch demo modal
-  </button>
-  
-  <!-- Modal -->
 <div class="modal fade" id="modal__despesa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 <div class="modal-dialog">
     <div class="modal-content">
     <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+            {#if (id)}
+                Editar despesa
+            {:else}
+                Adicionar nova despesa
+            {/if}
+        </h1>
+
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
-    <div class="modal-body">
-        ...
+    <form action="post">
+        <div class="modal-body">
+            <div class="mb-3">
+                <label for="title">Título</label>
+                <input type="text" class="form-control" id="title" name="title">
+            </div>
+            <div class="mb-3">
+                <label for="total">Valor (R$)</label>
+                <input type="number" class="form-control" id="total" name="total">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+    </form>
     </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
     </div>
-    </div>
-</div>
 </div>

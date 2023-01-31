@@ -28,7 +28,7 @@
         formData.append('start_date', SearchParams.get($page, 'start_date') ?? initDate.toISOString().substring(0, 10));
         formData.append('end_date', SearchParams.get($page, 'end_date') ?? tomorrow.toISOString().substring(0, 10));
         if(data.token) {
-            resumeStore.set(await ResumeRepository.get(formData, data.token));
+            resumeStore.set(await ResumeRepository.get(data.token, formData));
         }
     })();
 

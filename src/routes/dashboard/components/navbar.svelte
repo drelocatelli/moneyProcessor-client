@@ -9,7 +9,7 @@
 
   async function handleSubmit(e: SubmitEvent) {
     const formData = new FormData(e.target  as HTMLFormElement);
-    resumeStore.set(await ResumeRepository.get(formData, token));
+    resumeStore.set(await ResumeRepository.get(token, formData));
     $page.url.searchParams.set('start_date', formData.get('start_date') as string);
     $page.url.searchParams.set('end_date', formData.get('end_date') as string);
     goto(`?${$page.url.searchParams.toString()}`);
@@ -30,7 +30,7 @@
           <li class="nav-item"><a href="#" class="nav-link">Verificar gráficos</a></li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Adicionar nova
+              Inserir
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="javascript:void(0);" role="button" data-bs-toggle="modal" data-bs-target="#modal__despesa">Despesa</a></li>

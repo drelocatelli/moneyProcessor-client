@@ -2,7 +2,7 @@ import Resume from "../Services/Resume";
 
 class ResumeRepository {
 
-    static get(formData?: FormData, token: string) {
+    static get(token: string, formData?: FormData) {
         let data = null;
         
         if(formData) {
@@ -12,7 +12,7 @@ class ResumeRepository {
             };
         }
         
-        return Resume.get(data, token);
+        return Resume.get(data as object, token);
     }
     
 }
