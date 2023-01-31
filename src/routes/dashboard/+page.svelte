@@ -32,7 +32,6 @@
         }
     })();
 
-
     function formatDate(payload: string): string {
         const [year, month, day] = payload.split("-");
         const currentDate = `${day}/${month}/${year}`;

@@ -25,19 +25,18 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/dashboard">Resumo</a>
+            <a class="nav-link" aria-current="page" href="/dashboard">Resumo</a>
           </li>
+          <li class="nav-item"><a href="#" class="nav-link">Verificar gráficos</a></li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
+              Adicionar nova
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="javascript:void(0);">Action</a></li>
+              <li><a class="dropdown-item" href="javascript:void(0);" role="button" data-bs-toggle="modal" data-bs-target="#modal__despesa">Despesa</a></li>
               <li><a class="dropdown-item" href="javascript:void(0);">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="javascript:void(0);">Something else here</a></li>
             </ul>
-        </li>
+          </li>
         </ul>
         <form on:submit|preventDefault={handleSubmit} action="post" class="d-flex date-form menu__flexible" role="search">
             <label for="start_date">Data inicial:</label>
