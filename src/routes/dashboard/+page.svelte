@@ -6,6 +6,7 @@
     import Navbar from './components/navbar.svelte';
     import { page } from "$app/stores";
     import SearchParams from '../../Class/SearchParams';
+    import moment from 'moment';
     //@ts-ignore
     import Icon from 'svelte-icons-pack/Icon.svelte';
     //@ts-ignore
@@ -40,7 +41,9 @@
 
     function getDaysDiff() {
         const payload = resume!.data!.payload!;
-        return Math.abs(parseInt(payload.start_date.split('-')[2]) - parseInt(payload.end_date.split('-')[2]));
+        const start = moment(payload.start_date, 'YYYY-MM-DD');
+        const end = moment(payload.end_date, 'YYYY-MM-DD');
+        return Math.abs(moment.duration(start.diff(end)).asDays());
     }
     
 </script>
